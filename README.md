@@ -1,0 +1,7 @@
+# ABOUT eksperymenta
+
+
+## PREREQUISITES 
+
+
+### RUNNING
