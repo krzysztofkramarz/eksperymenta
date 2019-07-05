@@ -48,10 +48,11 @@ class ZlozonoscOperacji {
         System.out.println("po dodaniu");
         arrayLista.forEach(System.out::println);
 
-        //usuwanie - 0(n)
+        //usuwanie - 0(n) lub O(2n)  -  remove.(index) - arrayCopy, remove.(object) po equals i arraycopy
 
         System.out.println("Size is: " + arrayLista.size());
-        arrayLista.remove("ja");
+        arrayLista.remove("ja");//O(2n) najpierw equals, potem arraycopy
+        arrayLista.remove(1);
         System.out.println("Size is: " + arrayLista.size());
 
         //operacja get ma złożóność O(1)
