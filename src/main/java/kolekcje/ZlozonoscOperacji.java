@@ -57,6 +57,11 @@ class ZlozonoscOperacji {
         //operacja get ma złożóność O(1)
         System.out.println(arrayLista.get(2));
 
+
+        //contains O(n) - poprzez equals
+
+        System.out.println(arrayLista.contains("ja"));
+
         // *************  LINKED LIST ************
 //metody add(element) oraz add(index, element) mają złożoność 0(1)
         System.out.println("BBBB");
@@ -84,5 +89,8 @@ class ZlozonoscOperacji {
 
         System.out.println("get(index = 2)");
         System.out.println(linkedLista.get(2));
+
+        //contains O(n) - poprzez equals
+        System.out.println(linkedLista.contains("my"));
     }
 }
