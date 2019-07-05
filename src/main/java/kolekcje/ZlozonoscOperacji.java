@@ -63,7 +63,7 @@ class ZlozonoscOperacji {
         System.out.println(arrayLista.contains("ja"));
 
         // *************  LINKED LIST ************
-//metody add(element) oraz add(index, element) mają złożoność 0(1)
+        //metody add(element) oraz add(index, element) mają złożoność 0(1)
         System.out.println("BBBB");
         LinkedList<String> linkedLista = new LinkedList<>();
         System.out.println("Size is: " + linkedLista.size());
@@ -75,8 +75,11 @@ class ZlozonoscOperacji {
         System.out.println("Size is: " + linkedLista.size());
         System.out.println(linkedLista.size());
 
-        //remove złożoność O(n) - jedzie przez wszystkie elementy po equals
+        //remove (object) złożoność O(n) - jedzie przez wszystkie elementy po equals
+        //remove (index) złożoność O(1/2 * n) -nie zna indexu, po prostu iteruja aż licznkik iteracji zgodzi się z indeksem
+        //        // albo od początku do połowy albo od końca do połowy
         linkedLista.remove("ty");
+        linkedLista.remove(3);
         System.out.println("Size is: " + linkedLista.size());
         System.out.println(linkedLista.size());
 
