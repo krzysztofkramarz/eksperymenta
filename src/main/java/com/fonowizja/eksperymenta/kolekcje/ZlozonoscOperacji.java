@@ -1,4 +1,4 @@
-package kolekcje;
+package com.fonowizja.eksperymenta.kolekcje;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

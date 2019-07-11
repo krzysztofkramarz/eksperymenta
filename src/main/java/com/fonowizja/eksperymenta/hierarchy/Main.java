@@ -1,4 +1,4 @@
-package hierarchy;
+package com.fonowizja.eksperymenta.hierarchy;
 
 /**
  * @author krzysztof.kramarz

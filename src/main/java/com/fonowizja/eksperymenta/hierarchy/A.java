@@ -1,4 +1,4 @@
-package hierarchy;
+package com.fonowizja.eksperymenta.hierarchy;
 
 import lombok.Getter;
 import lombok.Setter;

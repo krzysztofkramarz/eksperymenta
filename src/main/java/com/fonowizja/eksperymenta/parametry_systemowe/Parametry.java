@@ -1,4 +1,4 @@
-package parametry_systemowe;
+package com.fonowizja.eksperymenta.parametry_systemowe;
 
 import java.util.Map;
 import java.util.Set;
