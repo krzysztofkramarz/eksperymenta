@@ -5,7 +5,7 @@ package com.fonowizja.eksperymenta.exceptions;
  */
 class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Iteracje iteracje = new Iteracje();
         iteracje.start();
     }

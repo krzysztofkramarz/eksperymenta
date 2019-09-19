@@ -17,16 +17,21 @@ class Iteracje {
     stringStringMap.put("b", "b");
     stringStringMap.put("c", "c");
     stringStringMap.put("d", "d");
-    stringStringMap.put("e", "e");
+    stringStringMap.put("e", null);
+    stringStringMap.put("f", "jeszcze");
     }
 
-    void start(){
+    void start() throws InterruptedException {
         Iterator<String> iterator = stringStringMap.keySet().iterator();
 
         while (iterator.hasNext()){
             String key = iterator.next();
-            System.out.println(stringStringMap.get(key));
+            Thread thread = new Thread(new Obliczenia(stringStringMap.get(key)),  key);
+            thread.start();
+            thread.join();
         }
+
+        System.out.println("#### WĄTEK Główny działa dalej!!!!");
 
     }
 
