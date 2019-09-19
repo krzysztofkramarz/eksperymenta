@@ -26,9 +26,13 @@ class Iteracje {
 
         while (iterator.hasNext()){
             String key = iterator.next();
+            //jeśli iteracja ruszy w wielu wątkach, to jeśli poleci runtime exception to wywali się ten jeden watek , a reszta
+            //w tym główny watek, będą dzialać dalej
             Thread thread = new Thread(new Obliczenia(stringStringMap.get(key)),  key);
             thread.start();
             thread.join();
+            //jeśłi iteracja bedzie tylko wjednym wątku, to cały program sie wyłoży
+//           new Obliczenia(stringStringMap.get(key)).run();
         }
 
         System.out.println("#### WĄTEK Główny działa dalej!!!!");
