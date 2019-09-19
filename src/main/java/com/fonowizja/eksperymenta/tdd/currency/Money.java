@@ -1,12 +1,12 @@
 package com.fonowizja.eksperymenta.tdd.currency;
 
+import com.fonowizja.eksperymenta.tdd.calculators.Bank;
+import com.fonowizja.eksperymenta.tdd.operations.Expression;
+import com.fonowizja.eksperymenta.tdd.operations.Sum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import tdd.calculators.Bank;
-import tdd.operations.Expression;
-import tdd.operations.Sum;
 
 /**
  * @author krzysztof.kramarz
@@ -17,78 +17,67 @@ import tdd.operations.Sum;
 @ToString
 public class Money implements Expression //TODO usunąć implements Expresion
 {
-   @SuppressWarnings("FieldNamingConvention")
-   public static final String USD = "USD";
-   public static final String FRANK = "FRANK";
+    @SuppressWarnings("FieldNamingConvention")
+    public static final String USD = "USD";
+    public static final String FRANK = "FRANK";
 
-   private final Integer amount;
-   private final String currency;
+    private final Integer amount;
+    private final String currency;
 
-   /**
-    * @param multiplier
-    *       multiplies ammount of given money
-    * @return new Money with multiplicated amount
-    */
+    /**
+     * @param multiplier multiplies ammount of given money
+     * @return new Money with multiplicated amount
+     */
 
-   public Expression times(int multiplier)
-   {
-      return new Money(amount * multiplier, currency);
-   }
+    public Expression times(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
 
-   /**
-    * @param money Money to add
-    * @return Money USD
-    */
-   public Money sum(Money money)
-   {
-      return new Money(getAmount() + money.getAmount(), USD);
-   }
+    /**
+     * @param money Money to add
+     * @return Money USD
+     */
+    public Money sum(Money money) {
+        return new Money(getAmount() + money.getAmount(), USD);
+    }
 
 
-   @Override
-   public Expression plus(Expression addend)
-   {
-      return new Sum(this, addend);
-   }
+    @Override
+    public Expression plus(Expression addend) {
+        return new Sum(this, addend);
+    }
 
-   @Override
-   public Expression times(Integer multiplier)
-   {
-      return new Money(amount * multiplier, currency);
-   }
+    @Override
+    public Expression times(Integer multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
 
-   @Override
-   public Money reduce(Bank bank, String to)
-   {
+    @Override
+    public Money reduce(Bank bank, String to) {
 
-      return new Money(amount / bank.rate(currency, to), to);
-   }
+        return new Money(amount / bank.rate(currency, to), to);
+    }
 
-   /**
-    * @param amount
-    *       amount of currency
-    * @return new Money with USD
-    */
-   public static Money dollar(Integer amount)
-   {
-      return new Money(amount, USD);
-   }
+    /**
+     * @param amount amount of currency
+     * @return new Money with USD
+     */
+    public static Money dollar(Integer amount) {
+        return new Money(amount, USD);
+    }
 
-   /**
-    * @param amount
-    *       amount of currency
-    * @return new Money with FRANK
-    */
-   public static Money frank(Integer amount)
-   {
-      return new Money(amount, FRANK);
-   }
+    /**
+     * @param amount amount of currency
+     * @return new Money with FRANK
+     */
+    public static Money frank(Integer amount) {
+        return new Money(amount, FRANK);
+    }
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      Money money = (Money) obj;
-      return amount.equals(money.amount) && getCurrency().equals(money.getCurrency());
-   }
+    @Override
+    public boolean equals(Object obj) {
+        Money money = (Money) obj;
+        return amount.equals(money.amount) && getCurrency().equals(money.getCurrency());
+    }
 
 }
