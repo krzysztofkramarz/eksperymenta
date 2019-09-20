@@ -19,6 +19,7 @@ class Iteracje {
     stringStringMap.put("d", "d");
     stringStringMap.put("e", null);
     stringStringMap.put("f", "jeszcze");
+         System.out.println(22);
     }
 
     void start() throws InterruptedException {
