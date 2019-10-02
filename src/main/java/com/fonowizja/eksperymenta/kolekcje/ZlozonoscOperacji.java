@@ -24,10 +24,9 @@ class ZlozonoscOperacji {
         //lista  ma size ale i initial capacity. size = aktualna wielkość, capacity - zarezerwowana wielkość.
         //Object[] elementData zawiera elementy listy
         //add(element) - dodaje na koniec listy, jesli dojdzie do końca elementaData.length (startowo 10),
-        // to tablica bedzie powiększona o 50 %, nie więcej niż int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;, c
+        // to tablica bedzie powiększona o 50 %, nie więcej niż int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;,
         // chyba że minimumSize (żądana wielkość). Złożoność jest więc O(1), chyba, ze musi przepisac tablicę
         // jak musi przepisać tablicę, to wtedy złożoność O(n)
-        //
         //
 
 
@@ -48,10 +47,12 @@ class ZlozonoscOperacji {
         System.out.println("po dodaniu");
         arrayLista.forEach(System.out::println);
 
-        //usuwanie - 0(n) lub O(2n)  -  remove.(index) - arrayCopy, remove.(object) po equals i arraycopy
+        //usuwanie - 0(n) lub O(2n)  -  remove.(index) - arrayCopy, remove.(object) - iteracja po liście,
+        // użycie equals i arraycopy
 
         System.out.println("Size is: " + arrayLista.size());
         arrayLista.remove("ja");//O(2n) najpierw equals, potem arraycopy
+        arrayLista.remove(1);
         arrayLista.remove(1);
         System.out.println("Size is: " + arrayLista.size());
 
@@ -81,6 +82,8 @@ class ZlozonoscOperacji {
         //        // albo od początku do połowy albo od końca do połowy
         linkedLista.remove("ty");
         linkedLista.remove(3);
+        linkedLista.remove(3);
+
         System.out.println("Size is: " + linkedLista.size());
         System.out.println(linkedLista.size());
 
