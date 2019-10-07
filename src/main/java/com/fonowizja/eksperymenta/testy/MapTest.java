@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MapTest {
 
     @Test
-    public void aaa() {
+    public void testMapEquality() {
 
         //given
         List<String> expected = List.of("a", "b", "c");
