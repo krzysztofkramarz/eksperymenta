@@ -1,0 +1,20 @@
+static void workWithList() {
+    // Create new list, and call it 'strings'
+    List strings = new ArrayList();
+
+    // Add strings 'first' and 'second' to your list
+    strings.add("first");
+    strings.add("second");
+
+    // Be a naughty boy/girl, and add an Integer '3'
+    strings.add(new Integer(3));
+
+    // I know it looks bad, but keep going
+    // Get first element from your list, and assign it
+    // to a variable of type String
+    String s = (String) strings.get(0);
+
+    // Do the same for last element
+    String s2 = (String) strings.get(2);
+    // Run the method
+}
