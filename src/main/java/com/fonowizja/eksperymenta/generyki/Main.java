@@ -1,4 +1,4 @@
-package generyki;
+package  com.fonowizja.eksperymenta.generyki;
 
 /**
  * @author krzysztof.kramarz
