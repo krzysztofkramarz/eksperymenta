@@ -50,7 +50,7 @@ class Main {
 
         System.out.println(odwracacz.odwracanie("Domek"));
 
-        generyki.lambdy.StringOperator<String> upperKejsowiec = (doUpekejdosowania) -> {
+        StringOperator<String> upperKejsowiec = (doUpekejdosowania) -> {
             return doUpekejdosowania.toUpperCase();
         };
 
@@ -73,7 +73,7 @@ class Main {
         CoODwrocic odwracanie(CoODwrocic s);
     }
 
-    private static String działajNaStingu(generyki.lambdy.StringOperator<String> stringOperator, String doDziałania) {
+    private static String działajNaStingu(StringOperator<String> stringOperator, String doDziałania) {
         return stringOperator.stringOp(doDziałania);
     }
 }
