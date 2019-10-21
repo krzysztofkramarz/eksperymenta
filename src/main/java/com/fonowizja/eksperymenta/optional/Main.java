@@ -1,6 +1,7 @@
 package com.fonowizja.eksperymenta.optional;
 
 import java.util.Optional;
+import java.util.Stack;
 
 /**
  * @author krzysztof.kramarz

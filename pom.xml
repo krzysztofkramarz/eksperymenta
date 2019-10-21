@@ -10,6 +10,12 @@
     <description>#DESC</description>
     <url>fonowizja.pl</url>
 
+   <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.1.6.RELEASE</version>
+   </parent>
+
    <properties>
       <!-- https://maven.apache.org/general.html#encoding-warning -->
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,6 +47,12 @@
    </properties>
 
    <dependencies>
+
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+         </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
       <dependency>
          <groupId>org.projectlombok</groupId>
@@ -136,6 +148,12 @@
 
    <build>
       <plugins>
+
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-enforcer-plugin</artifactId>
@@ -157,6 +175,7 @@
                </execution>
             </executions>
          </plugin>
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
