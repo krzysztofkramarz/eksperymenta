@@ -3,19 +3,18 @@ package generyki;
 /**
  * @author krzysztof.kramarz
  */
-class Pacjent<Idetyfikator>
-{
-   Idetyfikator idetyfikator;
+class Pacjent<Idetyfikator> {
 
-   Idetyfikator getIdetyfikator()
-   {
-      return idetyfikator;
-   }
+    Idetyfikator idetyfikator;
 
-   void setIdentyfikaator(Idetyfikator idetyfikator)
-   {
-      this.idetyfikator = idetyfikator;
-   }
+    Idetyfikator getIdetyfikator() {
+        return idetyfikator;
+    }
+
+    void setIdentyfikaator(Idetyfikator idetyfikator) {
+        this.idetyfikator = idetyfikator;
+    }
 
 
 }
+

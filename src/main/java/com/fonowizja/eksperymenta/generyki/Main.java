@@ -3,22 +3,21 @@ package generyki;
 /**
  * @author krzysztof.kramarz
  */
-class Main
-{
+class Main {
 
-   public static void main(String[] args)
-   {
-      Pacjent<String> stringPacjent = new Pacjent<>();
-      stringPacjent.setIdentyfikaator("Marek");
+    public static void main(String[] args) {
 
-      System.out.println(stringPacjent.getIdetyfikator());
+        Pacjent<String> stringPacjent = new Pacjent<>();
+        stringPacjent.setIdentyfikaator("Marek");
 
-      Pacjent<Integer> integerPacjent = new Pacjent<>();
-      integerPacjent.setIdentyfikaator(23);
+        System.out.println(stringPacjent.getIdetyfikator());
 
-      System.out.println(integerPacjent.getIdetyfikator());
+        Pacjent<Integer> integerPacjent = new Pacjent<>();
+        integerPacjent.setIdentyfikaator(23);
 
-   }
+        System.out.println(integerPacjent.getIdetyfikator());
+
+    }
 
 
 }
