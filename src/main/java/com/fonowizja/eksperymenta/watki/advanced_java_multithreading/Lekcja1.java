@@ -17,7 +17,6 @@ class Lekcja1 {
         Runner runner = new Runner();
 //        new Thread(runner, "Runner").start();
 
-        // TODO: Krzysztof_Kramarz 21.10.2019: dlaczego tak mozna
         //poniżej tworzymy implementację interejsu funkcyjnego i przypisujemy do zmiennej
         //implementacja to method reference
        Biegajmy biegajmy = new Biegajmy();

@@ -33,6 +33,7 @@ class Processor implements Runnable
    // Ten wątek będzie zakładał, że zmienna flaga nie zmieni się - nie martwmy się o tę zmienną
    // Trrzeba postawić barierę, aby zawsze wartość była wypłukiwana do RAMu.
 // Jeśli chesz modyfikować jedną zmienną z innego wątku, a ten pierwwwszy wątek używa tej zmiennej do cczegoś, uzyj volatile
+   //albo zastosowac jakąs formę synchronizacji
    boolean flaga = true;
 
    @Override
