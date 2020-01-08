@@ -75,11 +75,11 @@ class App
       long start = System.currentTimeMillis();
       Thread t1 = new Thread(() -> {
          proccess();
-      });
+      }, "thread1");
 
       Thread t2 = new Thread(() -> {
          proccess();
-      });
+      }, "thread2");
 
       t1.start();
       t2.start();
