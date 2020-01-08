@@ -1,27 +1,39 @@
 package com.fonowizja.eksperymenta.generyki.wojtechm.warsztaty;
 
+import lombok.Getter;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Generics!1!!
  * <p>
  * Below you have Task2 class. Make it Generic.
  * I want it to store 2 types. 'T' and 'S', that I can declare however I want.
  * Currently it accepts only T. Fix that!
- *
+ * <p>
  * You can put extra types in same angle brackets ('<>'), by separating them with a comma
  *
  * @author Wojciech Makiela
  */
-public class Task2<T> {
+
+//public class Task2<T> {
+public class Task2<T, S> {
 
     // TODO - T and S fields
     private final T myFieldOfTypeT;
+    private final S myFieldOfTypeS;
 
 
     // TODO - fix constructor - accept 2 variables - T and S
 
-    public Task2(T varOfTypeT) {
+    public Task2(T varOfTypeT, S myFieldOfTypeS) {
         // TODO - assign variables passed to constructor to fields
         this.myFieldOfTypeT = varOfTypeT;
+        this.myFieldOfTypeS = myFieldOfTypeS;
+//        T[] ts = new T[10];//doesnt compile
+        Integer[] integerArray = new Integer[10];
+//        T sdfs = new T(); //doesnt compile
     }
 
     /*
@@ -57,7 +69,43 @@ public class Task2<T> {
     assert b.getFirst().equals("first");
     assert b.getSecond() == 2;
     assert strings == b.getStrings();
+*/
 
+    @Getter
+    class KlasaWewnetrzna {
+
+        private List<String> strings;
+// FIXME: Krzysztof_Kramarz 08.01.2020 inner class cannot have static declarations
+//        public static void main(String[] args) {
+//
+//        }
+    }
+
+    public static void main(String[] args) {
+        // FIXME: Krzysztof_Kramarz 08.01.2020 cannot acces ....Task2.this from static context
+//        KlasaWewnetrzna klasaWewnetrzna = new KlasaWewnetrzna();
+        List<String> strings = Arrays.asList("a", "b", "c");
+        Bundle<String, Integer> b = new Bundle<>("first", 2, strings);
+        assert b.getFirst().equals("first");
+        assert b.getSecond() == 2;
+        assert strings == b.getStrings();
+    }
+}
+
+@Getter
+class Bundle<FIRST, SECOND> {
+
+    private FIRST first;
+    private SECOND second;
+    private List<String> strings;
+
+    public Bundle(FIRST first, SECOND second, List<String> strings) {
+        this.first = first;
+        this.second = second;
+        this.strings = strings;
+    }
+}
+    /*
 
     New task! Yey!
     Now something tricky. I want Task2 class to store an array of T's
@@ -99,4 +147,4 @@ public class Task2<T> {
 
 
      */
-}
+
