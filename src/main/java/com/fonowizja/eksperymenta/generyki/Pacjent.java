@@ -1,4 +1,4 @@
-package  com.fonowizja.eksperymenta.generyki;
+package com.fonowizja.eksperymenta.generyki;
 
 /**
  * @author krzysztof.kramarz
@@ -15,6 +15,13 @@ class Pacjent<Idetyfikator> {
         this.idetyfikator = idetyfikator;
     }
 
+    <T extends Ryzyko> void obliczWskaznikZdrowia(T wspolczynnikRyzyka) {
+    }
+
+
+}
+
+interface Ryzyko {
 
 }
 

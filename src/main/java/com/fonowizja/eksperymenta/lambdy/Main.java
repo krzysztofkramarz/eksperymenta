@@ -1,4 +1,4 @@
-package  com.fonowizja.eksperymenta.generyki.lambdy;
+package com.fonowizja.eksperymenta.lambdy;
 
 import java.util.function.Function;
 import java.util.function.Supplier;

@@ -1,4 +1,4 @@
-package  com.fonowizja.eksperymenta.generyki.lambdy;
+package com.fonowizja.eksperymenta.lambdy;
 
 /**
  * @author krzysztof.kramarz

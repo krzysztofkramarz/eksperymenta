@@ -1,0 +1,24 @@
+	mgr inż. Marek Kasztelnik
+Witam,
+Dnia 15 stycznia 2018, o godzinie 17:34
+Krzysztof Aleksander Kramarz (album: 34467, grp: 1K332) napisał(a):
+> Temat: pytanie javowe Generyki
+> Panie Magistrze, przepraszam, że zawrócę głowę dwoma pytaniami javowymi :) Jeśli można zawrócić głowę.
+> Napisałem przed chwilą metodę, działa, ale nie rozumiem dlaczego.
+> 1) Chodzi o <T> przed typem zwracanym w sygnaturze.
+>
+> private <T> void clearAllFields(Field<T>... components) // PO CO NAM <T> PRZED void.
+> {
+> //coś tam coś tam
+> }
+
+Tutaj mamy tak na prawdę 2 elementy:
+1. definicje typu "private <T> void", tutaj może nastąpić również specjalizacja takiego typu, np. "public <T extends String> void"
+2. użycie zdefiniowanego typu. Warto tutaj zauważyć, że ten typ T może być zadeklarowany na poziomie metody (tak jak w powyższym przykłądzie) jak i na poziomie klasy ("public class Foo<T extends String>"). W tym drugim nie ma potrzeby definiowania typu na poziomie metody, więc wyglądała by ona następująco: "private void clearAllFields(Fied<T>... components)
+
+Tak na prawdę to co napisałem powyżej odpowiada na to co opisał Pan tutaj.
+ Warto zauważyć również, że skrót "Field<T>..." tak na prawde konwertowany jest na Field<T>[].
+ Tak więc nie może Pan mieszać tutaj "gruszek z jabłkami, wszystkie parametry muszą być tego samego typu.
+ ? jest tutaj takim odpowiednikiem Object, więc wszystko co dziedziczy po Object będzie tutaj pasować
+ (czyli w szczególności String i Date). Proszę pamiętać, że w generykacj jeśli zadeklarujemy typ (np. T)
+ to kompilator w momencie kompilacji postawia sobie tam konkretny typ (np. String).

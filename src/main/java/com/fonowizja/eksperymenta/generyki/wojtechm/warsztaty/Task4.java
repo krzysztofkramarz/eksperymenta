@@ -8,10 +8,10 @@ package com.fonowizja.eksperymenta.generyki.wojtechm.warsztaty;
  * Some people say, that Elvis is still alive, because he was cloned. Fair enough.
  * Our Elvis also will be cloneable.
  * <p>
- *
+ * <p>
  * Important note:
- *      Please do not modify any internal classes/interfaces unless I ask You to do so.
- *
+ * Please do not modify any internal classes/interfaces unless I ask You to do so.
+ * <p>
  * Below you will find method 'cloneSinger'
  * Implement it ;)
  *
@@ -19,11 +19,16 @@ package com.fonowizja.eksperymenta.generyki.wojtechm.warsztaty;
  */
 public class Task4 {
 
-    interface Cloneable<T> {
+    // Wojtka:
+//    interface Cloneable<T> {
+//    <class> & <interface & <interface> ...
+    interface Cloneable<T extends Singer & Cloneable<T>> {
         T createClone();
     }
+
     static class Singer {
     }
+
     static class ElvisPresley extends Singer implements Cloneable<ElvisPresley> {
 
         @Override
@@ -32,13 +37,24 @@ public class Task4 {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * @param args input args
+     */
+    public static void main(String... args) {
         // Use main method for tests
         cloneSinger(new ElvisPresley());
+         cloneMultiply(new ElvisPresley());
+     returnT("Domek");
+     returnT(new ElvisPresley());
     }
 
-    private static Cloneable cloneSinger(Cloneable cloneable) {
-        return (Cloneable) cloneable.createClone();
+    //       Wojtka:
+//    private static Cloneable cloneSinger(Cloneable cloneable) {
+//        return (Cloneable) cloneable.createClone();
+//    }
+
+    private static <T extends Singer & Cloneable<T>> Cloneable<T> cloneSinger(Cloneable<T> cloneable) {
+        return cloneable.createClone();
         /*
         Look at that ugly cast! Why is it here?
         Delete '(Cloneable)' and read error description.
@@ -85,5 +101,9 @@ public class Task4 {
         // T type is available only in this method
         System.out.println(t);
         return t;
+    }
+
+    private static <T extends Singer & Cloneable<T>> Cloneable<T> cloneMultiply(Cloneable<T> cloneable) {
+        return cloneable.createClone().createClone().createClone().createClone();
     }
 }
