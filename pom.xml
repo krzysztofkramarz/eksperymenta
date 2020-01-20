@@ -136,11 +136,11 @@
       </dependency>
 
       <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
-      <dependency>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-checkstyle-plugin</artifactId>
-         <version>${version.maven.checkstyle.plugin}</version>
-      </dependency>
+<!--      <dependency>-->
+<!--         <groupId>org.apache.maven.plugins</groupId>-->
+<!--         <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--         <version>${version.maven.checkstyle.plugin}</version>-->
+<!--      </dependency>-->
 
 
 
@@ -279,15 +279,15 @@
                <skipEmptyReport>false</skipEmptyReport>
             </configuration>
          </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${version.maven.checkstyle.plugin}</version>
-            <configuration>
-               <linkXRef>false</linkXRef>
-               <configLocation>google_checks.xml</configLocation>
-            </configuration>
-         </plugin>
+<!--         <plugin>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--            <version>${version.maven.checkstyle.plugin}</version>-->
+<!--            <configuration>-->
+<!--               <linkXRef>false</linkXRef>-->
+<!--               <configLocation>google_checks.xml</configLocation>-->
+<!--            </configuration>-->
+<!--         </plugin>-->
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>jdepend-maven-plugin</artifactId>

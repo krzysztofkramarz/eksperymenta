@@ -38,7 +38,8 @@ public class Task5 {
         }
     }
 
-    private static void workWithSingers(List<Singer> singers) {
+//    private static void workWithSingers(List<Singer> singers) {
+    private static void workWithSingers(List<? extends Singer> singers) {
         for (Singer singer : singers) {
             System.out.println(singer);
         }
@@ -49,7 +50,7 @@ public class Task5 {
         List<Singer> singers = Arrays.asList(new Singer("Rock"), new Singer("Blues"));
         workWithSingers(singers);
         List<ElvisPresley> presleyList = Arrays.asList(new ElvisPresley("Rock'n'Roll"));
-//        workWithSingers(presleyList);
+        workWithSingers(presleyList);
 
         /*
         Done? Great! Compile error! My favourite!
@@ -77,7 +78,7 @@ public class Task5 {
 
             private static void workWithSingers(List<?> singers)
 
-        I know that it looks weir, but it is valid java syntax
+        I know that it looks weird, but it is valid java syntax
         Copy-paste and see.
         A wildcard type represents an unknown type.
         Here, we are specifying a list which could be of any type.
