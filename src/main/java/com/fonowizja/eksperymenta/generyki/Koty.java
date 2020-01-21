@@ -2,7 +2,6 @@ package com.fonowizja.eksperymenta.generyki;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ScheduledFuture;
 
 /**
  * @author krzysztof.kramarz
