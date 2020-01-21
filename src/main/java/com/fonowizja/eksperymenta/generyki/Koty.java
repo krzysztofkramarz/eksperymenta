@@ -2,19 +2,17 @@ package com.fonowizja.eksperymenta.generyki;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ScheduledFuture;
 
 /**
  * @author krzysztof.kramarz
  * wildcard bounded by superclass type
+ * PECS jest skrótem od producent nadrzędny, konsument bazowy (ang. producer-
+ * -extends, consumer-super).
+ * Naftalin i Wadler nazywają ją zasadą Get i Put
  */
 class Koty {
-
-    private static <T extends Cat> void addCat(List<? super Cat> catList, T item) {
-        catList.add(item);
-        System.out.println(String.format("Item of class: %s added", item.getClass()));
-    }
-
-
+    // PRODUCENT (Bloch, 31)  Supplier T get()
     private static void printAllAnimals(List<? extends Animal> animals) {
         System.out.println("printAllAnimals");
         for (Animal animal : animals) {
@@ -31,13 +29,13 @@ class Koty {
 
         /*ale do deklaracji listy ugenerycznionej hierarchią <? xtends Animal>
         nie można dodać nic z tej hierarchi
-        bo nie wiadomo, jak alista naprawdę przyjdzie*/
+        bo nie wiadomo, jaka lista naprawdę przyjdzie*/
 //        animals.add(new Animal());
 //        animals.add(new Cat());
 //        animals.add(new RedCat());
     }
 
-
+    // KONSUMER (Bloch, 31) Consumer accept(T t)
     private static void insertAllAnimals(List<? super Animal> animalsOrHigher) {
         /*
         Gdy deklarowana lista jest parametryzowana <? super Animal> gdy poieramy element,
@@ -59,8 +57,12 @@ class Koty {
         // ale możemy taką listę przekazać
 //        animalsOrHigher.add(new Live());
 //        animalsOrHigher.add(new Object())
+    }
 
-
+    //taka metoda dla podsumowania
+    private static <T extends Cat> void addCat(List<? super Cat> catList, T item) {
+        catList.add(item);
+        System.out.println(String.format("Item of class: %s added", item.getClass()));
     }
 
     public static void main(String[] args) {
