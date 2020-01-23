@@ -12,19 +12,25 @@ import java.util.List;
  */
 class Koty {
     // PRODUCENT (Bloch, 31)  Supplier T get()
+    // covariance  KOWARIANCJA wnioskownanie typu bardziej szczegółowego
     private static void printAllAnimals(List<? extends Animal> animals) {
         System.out.println("printAllAnimals");
         for (Animal animal : animals) {
             System.out.println(animal);
         }
-        List<Animal> tylkoAnimalsy = new ArrayList<>();
-        tylkoAnimalsy.add(new Cat());
 
-        //działa b = a !!
-        // animals może być List<B>
+        //działa ? = a !!
+        List<? extends Animal> kowariante;
+        List<Animal> tylkoAnimalsy = new ArrayList<>();
+        kowariante = tylkoAnimalsy;
+        Animal animal = kowariante.get(1);
+        //  kowariante.add(new Cat()); nie da się dodać, konsumer nie działa
+
+
         animals = tylkoAnimalsy;
-        animals.get(0);//nie boimy się, bo generyk juz zna hierarchie, wie ze moze dostać A,B,C ale
-        //pozwalamy mu, bo animalsy są ugenerycznione hierarchią, więc nawet jak przekazaliśmy List<B>, to jest ok
+        animals.get(0);//można, bo zmienna animals jest ugeneryczniona hierarchią, dlatego będą pasować
+        // wszystkie obiekty Animals i jej postypy
+        // generyk juz zna hierarchie, wie ze moze dostać A,B,C więc nawet jak przekazaliśmy List<B>, to jest ok
 
         /*ale do deklaracji listy ugenerycznionej hierarchią <? xtends Animal>
         nie można dodać nic z tej hierarchi
@@ -35,9 +41,10 @@ class Koty {
     }
 
     // KONSUMER (Bloch, 31) Consumer accept(T t)
+    // contravariance KONTRAWARIANCJA wnioskowanie typu bardziej uogólnionego
     private static void insertAllAnimals(List<? super Animal> animalsOrHigher) {
         /*
-        Gdy deklarowana lista jest parametryzowana <? super Animal> gdy poieramy element,
+        Gdy deklarowana lista jest parametryzowana <? super Animal> gdy pobieramy element,
         musi byc najwyzszym typem, czyli Object.
         Nie możemy rzutowac więc listy na Animalsy ani na nic niższego niż Object.
          */
@@ -56,6 +63,13 @@ class Koty {
         // ale możemy taką listę przekazać
 //        animalsOrHigher.add(new Live());
 //        animalsOrHigher.add(new Object())
+
+        //działa ? = b !!
+        List<? super Animal> kontrawariantne;
+        List<Animal> tylkoAnimalsy = new ArrayList<>();
+        kontrawariantne = tylkoAnimalsy;
+        // Animal animal = kontrawariantne.get(1);  nie da się pobrać, konsumer nie działa
+        kontrawariantne.add(new Cat());
     }
 
     //taka metoda dla podsumowania
@@ -87,7 +101,7 @@ class Koty {
 
         //compile time error
         //can not add list of subclass Dog of Superclass Animal of Cat class
-//        addCat(dogList, new Cat());
+        //addCat(dogList, new Cat());
         dogList.add(new Dog());
 
         List<Live> livesList = new ArrayList<>();
@@ -173,4 +187,3 @@ class B extends A {
 
 class C extends A {
 }
-
