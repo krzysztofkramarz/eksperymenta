@@ -41,7 +41,7 @@ public class Task6 {
 
     }
 
-    private static void workWithSingers(List<? extends Singer> singers, Consumer<Singer> consumer) {
+    private static void workWithSingers(List<? extends Singer> singers, Consumer<? super Singer> consumer) {
         for (Singer singer : singers) {
             consumer.accept(singer);
         }
@@ -66,7 +66,7 @@ public class Task6 {
 
         // But here's the problem
         Consumer<Object> print = System.out::println;
-//        workWithSingers(singers, print); // Compile error! Uncomment to check it out!
+        workWithSingers(singers, print); // Compile error! Uncomment to check it out!
 
         /*
             I know that Singer can be printed.
@@ -100,15 +100,15 @@ public class Task6 {
          */
 
         List<Integer> integers = Arrays.asList(1,2,3,4,5);
-//        demo(integers);
+        demo(integers);
 
         List<Number> numbers = new ArrayList<>(integers);
         numbers.add(3.14);
-//        demo(numbers);
+        demo(numbers);
 
         List<Object> objects = new ArrayList<>(numbers);
         objects.add(new Object());
-//        demo(objects);
+        demo(objects);
 
 
         // Once you analyze this example fix 'workWithSingers' method, so it accepts
