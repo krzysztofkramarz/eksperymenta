@@ -13,19 +13,27 @@ import java.util.List;
 class Koty {
     // PRODUCENT (Bloch, 31)  Supplier T get()
     // covariance  KOWARIANCJA wnioskownanie typu bardziej szczegółowego
+    // możemy przekazywać różne podtypy Animal i rzutować na Animal (nie tylko na Live czy Object)
     private static void printAllAnimals(List<? extends Animal> animals) {
         System.out.println("printAllAnimals");
         for (Animal animal : animals) {
             System.out.println(animal);
         }
+        Animal animalFromList = animals.get(0);
+//        Cat catFromList = animals.get(0); nie działa, bo nie wiadomo jaki będzie tyl pochodny
+        Live liveFromList = animals.get(0); // OK, nadtyp można pobrać
+        Object objectFromList = animals.get(0);
 
-        //działa ? = a !!
+        // nie działa, bo nie wiadomo jaka lista przyjdzie
+//        animals.add(new Cat());
+//        animals.add(new Animal()); nie działa
+
+        //działa  <? super > = a !!
         List<? extends Animal> kowariante;
         List<Animal> tylkoAnimalsy = new ArrayList<>();
         kowariante = tylkoAnimalsy;
         Animal animal = kowariante.get(1);
         //  kowariante.add(new Cat()); nie da się dodać, konsumer nie działa
-
 
         animals = tylkoAnimalsy;
         animals.get(0);//można, bo zmienna animals jest ugeneryczniona hierarchią, dlatego będą pasować
@@ -64,10 +72,15 @@ class Koty {
 //        animalsOrHigher.add(new Live());
 //        animalsOrHigher.add(new Object())
 
-        //działa ? = b !!
+        //nie działa <? super > = b !!
+        //działa  <? super > = a !!
         List<? super Animal> kontrawariantne;
         List<Animal> tylkoAnimalsy = new ArrayList<>();
         kontrawariantne = tylkoAnimalsy;
+
+        List<Cat> tylkoCaty = new ArrayList<>();
+//        kontrawariantne = tylkoCaty;nie działa
+
         // Animal animal = kontrawariantne.get(1);  nie da się pobrać, konsumer nie działa
         kontrawariantne.add(new Cat());
     }
@@ -107,14 +120,12 @@ class Koty {
         List<Live> livesList = new ArrayList<>();
         List<Object> objectsList = new ArrayList<>();
 
-
-        List<A> listA = new ArrayList<A>();
-        listA.add(new A());
-        listA.add(new B());
-        listA.add(new C());
-        List<B> listB = new ArrayList<B>();
-        listB.add(new B());
-        //listB.add(new A()) nie działa!
+        List<? extends Animal> listExtendsAnimal= new ArrayList<>();
+//        listExtendsAnimal.add(new Cat()); nie działa nic nie wsadzimy, ani ANimal ani Cat ani Object
+//        Animal animal = listExtendsAnimal.get(0); IndexOutOfBoundsException:
+        List<? super Animal> listSuperAnimal= new ArrayList<>();
+        Object o1 = listSuperAnimal.get(0);
+        listSuperAnimal.add(new Cat());
 
         /*
         poniższe wymienne uzywanie typow uegnetycznionych typami w jakiejs wzajemnnej hierarchii niemożliwe.
@@ -136,6 +147,8 @@ class Koty {
         insertAllAnimals(animalList);
         insertAllAnimals(livesList);
         insertAllAnimals(objectsList);
+        insertAllAnimals(listSuperAnimal);
+//        insertAllAnimals(listExtendsAnimal); nie działa
         /*
 ad. 2
         In listA you can insert objects that are either instances of A, or subclasses of A (B and C).
@@ -144,15 +157,18 @@ ad. 2
         then you could risk that listA contains non-B objects.
         When you then try to take objects out of listB you could risk to get non-B objects out (e.g. an A or a C).
         That breaks the contract of the listB variable declaration.
-        Aby to umozliwic, ugenerycczniamy metodę stosujemy konstrukcje <? extends Animal>.
-        Wtedy mozemy przekazać szereg obiektów z danej hierarchi i rzutowac kazdy obiekt na A bo nie boimy się
+        Aby umozliwić takie elastyczne przypisanie, ugenerycczniamy metodę stosujemy konstrukcje <? extends Animal>.
+        Wtedy mozemy przekazać szereg obiektów z danej hierarchi i rzutowac kazdy obiekt na A lub nadtyp bo nie boimy się
         że dostaniemy ClassCast Exception, gdyż mamy zapewnione, że każdy "is Animal"
         */
+
 
         printAllAnimals(animalList);
         printAllAnimals(catList); //tu przekazujemy List<B>, a w metodzie zrobimy listB = listA;
         printAllAnimals(redCatList);
         printAllAnimals(dogList);
+//        printAllAnimals(listSuperAnimal); nie działa
+        printAllAnimals(listExtendsAnimal);
 
 
         // List<?>
@@ -160,6 +176,38 @@ ad. 2
 //        c.add(new Object()); // Compile time error
         c.add(null); // to zadziala! null is subtype of any Object
         Object o = c.get(0);// to zadziala, mimo deklaracji List<?>, bo na pewno jest tam jakis Object.class
+
+
+//proby z A,B,C
+        List<Object> objects = new ArrayList<>();
+        List<A> listA = new ArrayList<>();
+        listA.add(new A());
+        listA.add(new B());
+        listA.add(new C());
+
+        List<B> listB = new ArrayList<>();
+        listB.add(new B());
+        //listB.add(new A()) nie działa!
+
+//        listA=listB; nie działa
+
+        List<? extends A> extendsA = new ArrayList<>();
+        extendsA = listA;
+        extendsA = listB;
+
+//        listA = extendsA; nie działa
+//        listB = extendsA; nie działa
+//        extendsA = objects;  nie działa
+//        objects = extendsA;  nie działa
+
+
+        List<? super A> superA = new ArrayList<>();
+        superA = listA;
+//      superA = listB; nie działa
+        superA = objects;
+//      objects = superA;  nie działa
+//      listA = superA;  nie działa
+//      listB = superA;  nie działa
 
     }
 }
